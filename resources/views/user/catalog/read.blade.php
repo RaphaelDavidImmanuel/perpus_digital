@@ -1,12 +1,26 @@
-<x-app-layout>
-    
-    <div class="p-6">
-        <h2 class="text-2xl font-bold mb-4">
-            {{ $book->title }}
-        </h2>
+@extends('layouts.user')
 
-        <iframe src="{{ asset('storage/' . $book->pdf_file) }}" width="100%" height="800px">
-        </iframe>
+@section('title', $book->title)
 
+@section('content')
+
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    {{ $book->title }}
+                </h5>
+
+                <a href="{{ route('catalog.show', $book->id) }}" class="btn btn-secondary btn-sm">
+                    Kembali
+                </a>
+            </div>
+        </div>
+
+        <div class="card-body p-0">
+            <iframe src="{{ asset('storage/' . $book->pdf_file) }}" width="100%" height="900px" style="border:none;">
+            </iframe>
+
+        </div>
     </div>
-</x-app-layout>
+@endsection

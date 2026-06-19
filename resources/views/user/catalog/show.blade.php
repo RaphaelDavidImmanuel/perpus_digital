@@ -1,36 +1,61 @@
-<x-app-layout>
+@extends('layouts.user')
 
-    <div class="max-w-6xl mx-auto py-8">
-        <div class="bg-white rounded shadow p-6">
-            <div class="grid md:grid-cols-3 gap-6">
-                <div>
-                    @if ($book->cover_image)
-                        <img src="{{ asset('storage/' . $book->cover_image) }}" class="w-full h-96 object-cover rounded shadow">
-                    @endif
-                </div>
+@section('title', $book->title)
 
-                <div class="md:col-span-2">
-                    <h1 class="text-3xl font-bold mb-4">
+@section('content')
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card">
+                @if ($book->cover_image)
+                    <img src="{{ asset('storage/' . $book->cover_image) }}" class="img-fluid rounded">
+                @endif
+            </div>
+        </div>
+
+        <div class="col-md-8">
+
+            {{-- <div class="card">
+                @if ($book->cover_image)
+                    <img src="{{ asset('storage/' . $book->cover_image) }}" class="img-fluid rounded">
+                @endif
+            </div> --}}
+
+            <div class="card">
+                <div class="card-body">
+                    <h3>
                         {{ $book->title }}
-                    </h1>
-                    <p><b>Penulis:</b> {{ $book->author }}</p>
-                    <p><b>Penerbit:</b> {{ $book->publisher }}</p>
-                    <p><b>Tahun:</b> {{ $book->year }}</p>
-                    <p><b>Kategori:</b>
+                    </h3>
+
+                    <hr>
+
+                    <p>
+                        <strong>Penulis :</strong>
+                        {{ $book->author }}
+                    </p>
+
+                    <p>
+                        <strong>Penerbit :</strong>
+                        {{ $book->publisher }}
+                    </p>
+
+                    <p>
+                        <strong>Tahun :</strong>
+                        {{ $book->year }}
+                    </p>
+
+                    <p>
+                        <strong>Kategori :</strong>
                         {{ $book->category->name }}
                     </p>
 
                     <div class="mt-4">
-                        {{ $book->description }}
-                    </div>
-
-                    <div class="mt-6 flex gap-3">
-                        <a href="{{ route('catalog.read', $book) }}" class="bg-blue-500 text-white px-4 py-2 rounded">
+                        <a href="{{ route('catalog.read', $book->id) }}" class="btn bg-gradient-success">
                             Baca Buku
                         </a>
 
-                        <a href="{{ route('catalog.download', $book) }}"
-                            class="bg-green-500 text-white px-4 py-2 rounded">
+                        <a href="{{ route('catalog.download', $book->id) }}" class="btn bg-gradient-primary">
                             Download PDF
                         </a>
 
@@ -39,4 +64,15 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5>Deskripsi Buku</h5>
+
+            <p class="mb-0">
+                {{ $book->description }}
+            </p>
+
+        </div>
+    </div>
+@endsection
