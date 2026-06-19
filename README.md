@@ -24,10 +24,15 @@ Aplikasi Perpustakaan Digital berbasis Laravel.
 - JavaScript
 
 composer install
+
 cp .env.example .env
+
 php artisan key:generate
+
 php artisan migrate
 
 npm install -g npm@11.12.1
+
 npm run dev
+
 php artisan serve
