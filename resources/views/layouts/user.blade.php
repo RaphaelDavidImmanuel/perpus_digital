@@ -29,15 +29,21 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
+            <a class="navbar-brand m-0">
+                {{-- <img src="{{ asset('assets/img/logo.png') }}" class="navbar-brand-img h-100"> --}}
+                <span class="ms-1 font-weight-bold">
+                    Perpus-Digitals
+                </span>
+            </a>
+            {{-- <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
                 target="_blank">
                 <img src="./assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">Perpus-Digi</span>
-            </a>
+            </a> --}}
         </div>
         <hr class="horizontal dark mt-0">
 
-        <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+        <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('dashboard') }}">
@@ -46,38 +52,19 @@
                     </a>
                 </li>
 
-                <li class="nav-item mt-3">
-                    <h6 class="ps-4 text-uppercase text-xs opacity-6">
-                        Master Data
-                    </h6>
-                </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('catalog.index') }}">
-                        <i class="ni ni-bullet-list-67 text-warning"></i>
+                        <i class="ni ni-books text-success"></i>
                         <span class="ms-2">Katalog Buku</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('history') }}">
-                        <i class="ni ni-books text-success"></i>
+                        <i class="ni ni-time-alarm text-warning"></i>
                         <span class="ms-2">Riwayat Bacaan</span>
                     </a>
                 </li>
-
-                {{-- <li class="nav-item mt-3">
-                    <h6 class="ps-4 text-uppercase text-xs opacity-6">
-                        Laporan
-                    </h6>
-                </li> --}}
-
-                {{-- <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="ni ni-chart-bar-32 text-danger"></i>
-                        <span class="ms-2">Buku Terpopuler</span>
-                    </a>
-                </li> --}}
 
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 text-uppercase text-xs opacity-6">
@@ -86,30 +73,39 @@
                 </li>
 
                 <li class="nav-item">
-                    <div class="nav-link">
+                    <a class="nav-link" href="#">
                         <i class="ni ni-single-02 text-info"></i>
-                        <span class="ms-2">
-                            {{ auth()->user()->name }}
-                        </span>
-                    </div>
+                        <span class="ms-2">Profile</span>
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <form action="{{ route('logout') }}" method="POST">
+                    <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" onclick="return confirm('Yakin ingin logout?')"
-                            class="nav-link border-0 bg-transparent w-100 text-start">
+                        <button type="submit" class="nav-link border-0 bg-transparent w-100 text-start">
                             <i class="ni ni-button-power text-danger"></i>
-
-                            <span class="ms-2">
-                                Logout
-                            </span>
-
+                            <span class="ms-2">Logout</span>
                         </button>
                     </form>
                 </li>
             </ul>
         </div>
+
+        {{-- <div class="sidenav-footer mx-3">
+            <div class="card card-body text-center">
+                <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}"
+                    class="avatar avatar-xl mx-auto mb-3">
+
+                <h6 class="mb-0">
+                    {{ auth()->user()->name }}
+                </h6>
+
+                <small class="text-muted">
+                    {{ auth()->user()->email }}
+                </small>
+
+            </div>
+        </div> --}}
 
         {{-- <div class="sidenav-footer mx-3 ">
             <div class="card card-plain shadow-none" id="sidenavCard">
