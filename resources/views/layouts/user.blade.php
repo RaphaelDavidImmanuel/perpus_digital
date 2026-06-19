@@ -32,7 +32,7 @@
             <a class="navbar-brand m-0">
                 {{-- <img src="{{ asset('assets/img/logo.png') }}" class="navbar-brand-img h-100"> --}}
                 <span class="ms-1 font-weight-bold">
-                    Perpus-Digitals
+                    Perpus-Digital
                 </span>
             </a>
             {{-- <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
