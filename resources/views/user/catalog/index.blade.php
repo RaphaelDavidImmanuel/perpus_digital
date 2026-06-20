@@ -5,7 +5,7 @@
 @section('content')
     <div class="card mb-4">
         <div class="card-body">
-            <form method="GET">
+            <form method="GET" action="{{ route('catalog.index') }}">
                 <div class="row">
                     <div class="col-md-7">
                         <input type="text" name="search" value="{{ request('search') }}" class="form-control"
