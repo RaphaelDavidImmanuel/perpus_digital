@@ -17,9 +17,12 @@ class CatalogController extends Controller
 
         $books = Book::with('category');
 
-        // Ini untuk Search
+        // Ini untuk Search (judul dan penulis)
         if ($request->search) {
-            $books->where('title', 'like', '%' . $request->search . '%');
+            $books->where(function ($query) use ($request) {
+                $query->where('title', 'like', '%' . $request->search . '%')
+                      ->orWhere('author', 'like', '%' . $request->search . '%');
+            });
         }
 
         // Ini bagian buat Filter kategori nya ya wok
@@ -27,7 +30,7 @@ class CatalogController extends Controller
             $books->where('category_id', $request->category);
         }
 
-        $books = $books->latest()->paginate(8);
+        $books = $books->latest()->paginate(8)->appends($request->query());
 
         return view('user.catalog.index', compact('books','categories'));
     }

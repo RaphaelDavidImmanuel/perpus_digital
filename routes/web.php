@@ -5,6 +5,8 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 // landing page nih
@@ -23,7 +25,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('categories', CategoryController::class);
     // Buku
     Route::resource('books', BookController::class);
-
+    // Kelola User
+    Route::resource('users', UserController::class)->only(['index', 'edit', 'update', 'destroy']);
 });
 
 // ini route buat user lek
@@ -38,10 +41,15 @@ Route::middleware(['auth'])->group(function () {
     // Riwayat Bacaan
     Route::get('/history', [CatalogController::class, 'history'])->name('history');
 
-    // Profile
+    // Profile (Breeze default)
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // User Profile (Argon themed)
+    Route::get('/user/profile', [UserProfileController::class, 'edit'])->name('user.profile.edit');
+    Route::patch('/user/profile/name', [UserProfileController::class, 'updateName'])->name('user.profile.update-name');
+    Route::put('/user/profile/password', [UserProfileController::class, 'updatePassword'])->name('user.profile.update-password');
 });
 
 require __DIR__ . '/auth.php';
