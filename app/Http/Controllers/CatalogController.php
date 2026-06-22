@@ -47,6 +47,17 @@ class CatalogController extends Controller
 
     public function read(Book $book)
     {
+
+    //     BookView::firstOrCreate(
+    //     [
+    //         'user_id' => auth()->id(),
+    //         'book_id' => $book->id,
+    //     ],
+    //     [
+    //         'viewed_at' => now(),
+    //     ]
+    // );
+
         return view('user.catalog.read', compact('book'));
     }
 
