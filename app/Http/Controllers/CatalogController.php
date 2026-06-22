@@ -20,8 +20,7 @@ class CatalogController extends Controller
         // Ini untuk Search (judul dan penulis)
         if ($request->search) {
             $books->where(function ($query) use ($request) {
-                $query->where('title', 'like', '%' . $request->search . '%')
-                      ->orWhere('author', 'like', '%' . $request->search . '%');
+                $query->where('title', 'like', '%' . $request->search . '%')->orWhere('author', 'like', '%' . $request->search . '%');
             });
         }
 

@@ -31,7 +31,7 @@
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0">
-                <img src="{{ asset('assets/img/logo.png') }}" class="navbar-brand-img h-100">
+                <img src="{{ asset('assets/img/favicon.png') }}" class="navbar-brand-img h-100">
                 <span class="ms-1 font-weight-bold">
                     Perpus-Digital
                 </span>
@@ -156,7 +156,7 @@
                         <li class="nav-item d-flex align-items-center text-white">
                             <span class="d-sm-inline d-none">
                                 <p>Selamat Datang User : {{ auth()->user()->name }}</p>
-                                </span>
+                            </span>
                         </li>
 
                         {{-- <li class="nav-item d-xl-none ps-3 d-flex align-items-center">

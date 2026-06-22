@@ -51,6 +51,8 @@ class BookController extends Controller
 
         $pdfName = $request->file('pdf_file')->store('books', 'public');
 
+        // dd($request->year);
+        
         Book::create([
             'category_id' => $request->category_id,
             'title' => $request->title,
@@ -138,7 +140,7 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Book $book)
     {
         if ($book->cover_image) {
             Storage::disk('public')->delete($book->cover_image);
