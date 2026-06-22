@@ -6,14 +6,17 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 // landing page nih
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // ini dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -30,11 +33,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 // ini route buat user lek
+// katalog public
+Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
+Route::get('/catalog/{book}', [CatalogController::class, 'show'])->name('catalog.show');
 
 Route::middleware(['auth'])->group(function () {
     // Katalog Buku
-    Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
-    Route::get('/catalog/{book}', [CatalogController::class, 'show'])->name('catalog.show');
     Route::get('/catalog/{book}/read', [CatalogController::class, 'read'])->name('catalog.read');
     Route::get('/catalog/{book}/download', [CatalogController::class, 'download'])->name('catalog.download');
 

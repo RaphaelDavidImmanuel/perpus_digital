@@ -51,13 +51,27 @@
                     </p>
 
                     <div class="mt-4">
-                        <a href="{{ route('catalog.read', $book->id) }}" class="btn bg-gradient-success">
+                        @auth
+                            <a href="{{ route('catalog.read', $book) }}" class="btn btn-primary">
+                                Baca Buku
+                            </a>
+
+                            <a href="{{ route('catalog.download', $book) }}" class="btn btn-success">
+                                Download PDF
+                            </a>
+                        @else
+                            <a href="{{ route('login') }}" class="btn btn-warning">
+                                Login untuk Membaca
+                            </a>
+                        @endauth
+                        
+                        {{-- <a href="{{ route('catalog.read', $book->id) }}" class="btn bg-gradient-success">
                             Baca Buku
                         </a>
 
                         <a href="{{ route('catalog.download', $book->id) }}" class="btn bg-gradient-primary">
                             Download PDF
-                        </a>
+                        </a> --}}
 
                     </div>
                 </div>
