@@ -11,11 +11,18 @@
             </div>
 
             <div class="card-body">
+                @if ($errors->any())
+                    <div class="alert alert-danger text-white">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-
                     <div class="mb-3">
-
                         <label class="form-label">
                             Kategori
                         </label>
@@ -70,8 +77,13 @@
                         <label class="form-label">
                             File PDF
                         </label>
-
                         <input type="file" name="pdf_file" class="form-control">
+
+                        @error('pdf_file')
+                            <small class="text-danger">
+                                {{ $message }}
+                            </small>
+                        @enderror
                     </div>
 
                     <button class="btn btn-primary">

@@ -41,7 +41,8 @@ class BookController extends Controller
             'year' => 'nullable|numeric',
             'description' => 'nullable|string',
             'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'pdf_file' => 'required|mimes:pdf|max:10000',
+            'pdf_file' => 'required|mimes:pdf|max:51200',
+            // 'pdf_file' => 'required|mimes:pdf|max:10000',
         ]);
 
         $coverName = null;
@@ -52,7 +53,8 @@ class BookController extends Controller
         $pdfName = $request->file('pdf_file')->store('books', 'public');
 
         // dd($request->year);
-        
+        // dd($request->all());
+
         Book::create([
             'category_id' => $request->category_id,
             'title' => $request->title,
